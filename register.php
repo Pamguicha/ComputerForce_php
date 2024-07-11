@@ -10,7 +10,34 @@
   <link rel="stylesheet" href="style.css">
   <title> Registration Form| Computer Force </title>
 </head>
+<?php
+//defining username variable and set to empty values
+$userNameError = "";
+$username = "";
 
+
+   $hasPostOccured = filter_input(INPUT_SERVER, "REQUEST_METHOD");
+   if($hasPostOccured == "POST") {
+      if(empty($_POST["username"])) {
+        $userNameError ="Required. Must be between 6 characters and 20 characters. Must not contain any special characters.";
+      } else {
+          $username = test_input($_POST["username"]);
+        if (!preg_match("/^[a-zA-Z ]*$/",$username)){
+          $usernameError = "Must not contain any special characters";
+          $username = "";
+        } 
+      }
+    }
+  
+ 
+  function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+?>
 <body>
   <img class="logo" src="images/logoCf.png" alt="an image of the logo of Computer Force">
   <nav class="nav_bar">
@@ -45,11 +72,11 @@
   </a>
   <div class="container-grid">
     <main class="mainSectionRegisterForm">
-      <form action="php/processForm.php" method="post">
-        <label for="uname">Username:</label>
-        <input type="text" id="uname" name="username" value="<?php if (isset($_POST['username'])) { echo $_POST['username'];} ?>">
+      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <label for="uname">Username:
+        <input type="text" id="uname" name="username" value="<?php echo $username; ?>">
         <!-- display errors -->
-         <label name="message"><?php echo $message; ?>
+           <span class="error"> <?php echo $userNameError; ?></span>
         </label> 
        <br>
       <input type="submit" name="submitMessage" value="submit"> <br>
