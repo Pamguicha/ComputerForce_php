@@ -15,19 +15,20 @@
 $userNameError = "";
 $username = "";
 
-
+  //filter
    $hasPostOccured = filter_input(INPUT_SERVER, "REQUEST_METHOD");
+  //check if form is submitted
    if($hasPostOccured == "POST") {
+    
       if(empty($_POST["username"])) {
         $userNameError ="Required. Must be between 6 characters and 20 characters. Must not contain any special characters.";
       } else {
           $username = test_input($_POST["username"]);
-        if (!preg_match("/^[a-zA-Z ]*$/",$username)){
-          $usernameError = "Must not contain any special characters";
-          $username = "";
-        } 
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$username)) {
+        $userNameError= "Must not contain any special characters.Only letters and white space allowed";
       }
     }
+  }
   
  
   function test_input($data) {
@@ -76,7 +77,7 @@ $username = "";
         <label for="uname">Username:
         <input type="text" id="uname" name="username" value="<?php echo $username; ?>">
         <!-- display errors -->
-           <span class="error"> <?php echo $userNameError; ?></span>
+           <span class="error"> * <?php echo $userNameError; ?></span>
         </label> 
        <br>
       <input type="submit" name="submitMessage" value="submit"> <br>

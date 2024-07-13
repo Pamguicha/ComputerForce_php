@@ -253,7 +253,9 @@ td{
   
 }
 /*register page */
-
+span.error{
+  color: red;
+}
 
 /*responsive layout - menu */
 @media only screen and (max-width: 920px){
