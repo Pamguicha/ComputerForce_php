@@ -26,6 +26,11 @@ $username = "";
           $username = test_input($_POST["username"]);
         if (!preg_match("/^[a-zA-Z-' ]*$/",$username)) {
         $userNameError= "Must not contain any special characters.Only letters and white space allowed";
+      } else {
+        $username = test_input($_POST["username"]);
+      if (strlen($username) <=5){
+        $userNameError ="Must be between 6 characters and 20 characters";
+       } 
       }
     }
   }
