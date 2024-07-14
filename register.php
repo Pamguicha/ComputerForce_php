@@ -12,8 +12,8 @@
 </head>
 <?php
 //defining username variable and set to empty values
-$userNameError = $emailError = "";
-$username = $email = "";
+$userNameError = $emailError = $passwordError = "";
+$username = $email = $password = "";
 
   //filter
    $hasPostOccured = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -25,11 +25,11 @@ $username = $email = "";
           $username = test_input($_POST["username"]);
         if (!preg_match("/^[a-zA-Z-' ]*$/",$username)) {
         $userNameError= "Must not contain any special characters.Only letters and white space allowed";
-      } else if (strlen($username) <=5){
+      } elseif (strlen($username) <=5){
         $userNameError ="Must be between 6 characters and 20 characters";
        } 
       }
-    
+      //validate email
      if(empty($_POST["email"])) {
       $emailError = "Email is required";
      } else {
@@ -38,6 +38,19 @@ $username = $email = "";
         $emailError = "Invalid email format";
       }
      }
+     //validate password Required. Must be between 8 characters and 12 characters.
+     if(empty($_POST["password"])) {
+      $passwordError = "Password is required";
+     } else {
+      $password = test_input($_POST["password"]);
+      $patternPassword = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,12}$/'; 
+      if(!preg_match ($patternPassword, $password)){
+        $passwordError = "Must be a valid password. Must be between 8 characters and 12 characters. It must contains at least one number and capital letter";
+      } else {
+        $password = "";
+      }
+     }
+     
     }
  
   function test_input($data) {
@@ -95,6 +108,12 @@ $username = $email = "";
          <span class="error"> * <?php echo $emailError; ?> </span>
         </label>
         <br>  
+        <label for="passwordUser"> Password:
+          <input type="password" name="password" value="<?php echo $password; ?>" > 
+           <!-- display errors -->
+          <span class="error"> * <?php echo $passwordError ?> </span>
+        </label>
+        <br>
       <input type="submit" name="submitMessage" value="submit"> <br>
       </form>
     </main>
