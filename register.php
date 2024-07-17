@@ -12,8 +12,8 @@
 </head>
 <?php
 //defining username variable and set to empty values
-$userNameError = $emailError = $passwordError = "";
-$username = $email = $password = "";
+$userNameError = $emailError = $passwordError = $confirmPasswordError = "";
+$username = $email = $password = $confirmPassword = "";
 
   //filter
    $hasPostOccured = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -25,7 +25,7 @@ $username = $email = $password = "";
           $username = test_input($_POST["username"]);
         if (!preg_match("/^[a-zA-Z-' ]*$/",$username)) {
         $userNameError= "Must not contain any special characters.Only letters and white space allowed";
-      } elseif (strlen($username) <=5){
+      } elseif (strlen($username) < 6 || strlen($username) >20){
         $userNameError ="Must be between 6 characters and 20 characters";
        } 
       }
@@ -45,13 +45,27 @@ $username = $email = $password = "";
       $password = test_input($_POST["password"]);
       $patternPassword = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,12}$/'; 
       if(!preg_match ($patternPassword, $password)){
-        $passwordError = "Must be a valid password. Must be between 8 characters and 12 characters. It must contains at least one number and capital letter";
+        $passwordError = "Must be a valid password. Must be between 8 characters and 12 characters. It must contains at least one number and capital letter"; 
       } else {
         $password = "";
       }
      }
-     
+     //validate confirmation password
+     if(empty($_POST["confirmPassword"])) {
+       $confirmPasswordError = "Confirmation password is required";
+     } elseif  ($_POST['password']!= $_POST['confirmPassword']){
+      $confirmPasswordError = "Required. Must match the password that the user has entered.";
+     } else {
+      $confirmPassword = test_input($_POST["password"]);
+      $patternPassword = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,12}$/'; 
+      if(!preg_match ($patternPassword, $confirmPassword)) {
+        $confirmPasswordError = "Must be a valid password. Must be between 8 characters and 12 characters.";
+     } else {
+      $confirmPassword = "";
+     }
     }
+  }
+   
  
   function test_input($data) {
   $data = trim($data);
@@ -114,6 +128,13 @@ $username = $email = $password = "";
           <span class="error"> * <?php echo $passwordError ?> </span>
         </label>
         <br>
+        <label for="confirmationPassword"> Confirm Password:
+          <input type="password" name="confirmPassword" value="<?php echo $confirmPassword; ?>">
+          <!-- display errors -->
+          <span class="error"> * <?php echo $confirmPasswordError ?> </span>
+        </label>
+        <br>
+
       <input type="submit" name="submitMessage" value="submit"> <br>
       </form>
     </main>
