@@ -97,7 +97,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
     $addressError = "Address is required";
    } else {
     $address = test_input($_POST["address"]);
-     if(!preg_match("/^[a-zA-Z0-9\s,.'-]$/",$address)){
+     if(!preg_match("/^[a-zA-Z0-9\s,.'-]{3,50}$/",$address)){
       $addressError="Must be between 3 characters and 50 characters. Must not contain any special characters.";
      } elseif (strlen($address) < 3 || strlen($address) > 50) {
           $addressError = "Must be between 3 characters and 50 characters. Must not be empty";
