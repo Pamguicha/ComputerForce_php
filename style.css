@@ -240,6 +240,13 @@ td{
   border: 0.5px solid var(--details-color-branding);
  
 }
+
+.container-btn{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-flow:wrap;
+}
 .tableBtn{
   background-color: var(--secondary-color-branding);
   color: #FFFFFF;
@@ -247,9 +254,9 @@ td{
   padding: 10px 30px;
   font-size: 1.5rem;
   cursor: pointer;
-  display: flex;
-  flex-wrap: wrap;
   margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 60px;
   
 }
 /*register page */
@@ -334,5 +341,13 @@ margin-right: 100px;
 @media only screen and (max-width: 920px){
 .AboutTitleList{
   font-size: 1.8rem;
+}
+
+/*responsive cart*/
+@media only screen and(max-width: 1000px){
+  .tableBtn{
+    margin-right:20px;
+  }
+  
 }
 }
