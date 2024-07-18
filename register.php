@@ -255,7 +255,16 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
         </label>
         <br>
           <label for="state"> State:
-          <input class="stateAus" type="text" name="state" value="<?php echo $state; ?>">
+            <select name="state" value="<?php echo $state; ?>">
+              <option value="none">-</option>
+              <option value="ACT">ACT</option>
+              <option value="NSW">NSW</option>
+              <option value="NT">NT</option>
+              <option value="QLD">QLD</option>
+              <option value="TAS">TAS</option>
+              <option value="VIC">VIC</option>
+              <option value="TAS">TAS</option>
+            </select>
            <!-- display errors -->
          <span class="error"> * <?php echo $stateError; ?> </span>
         </label>
