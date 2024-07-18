@@ -12,8 +12,8 @@
 </head>
 <?php
 //defining username variable and set to empty values
-$userNameError = $emailError = $passwordError = $confirmPasswordError = "";
-$username = $email = $password = $confirmPassword = "";
+$userNameError = $emailError = $passwordError = $confirmPasswordError = $firstNameError = $surnameError = $genderError = "";
+$username = $email = $password = $confirmPassword = $firstName = $surname = "";
 
   //filter
    $hasPostOccured = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -64,8 +64,35 @@ $username = $email = $password = $confirmPassword = "";
       $confirmPassword = "";
      }
     }
+  //validate firstName
+    if(empty($_POST["firstname"])) {
+        $firstNameError ="Required. Must be between 3 characters and 20 characters. Must not contain any special characters or empty";
+    } else { 
+      $firstName = test_input($_POST["firstname"]);
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$firstName)) {
+        $firstNameError= "Must not contain any special characters.Only letters and white space allowed";
+    } elseif (strlen($firstName) < 3 || strlen($firstName) >20) {
+      $firstNameError ="Must be between 3 characters and 20 characters";
+    }
   }
-   
+  //validate surname
+    if(empty($_POST["surname"])) {
+      $surnameError = "Required. Must be between 3 characters and 20 characters. Must not contain any special characters.";
+    } else {
+      $surname = test_input($_POST["surname"]);
+        if(!preg_match("/^[a-zA-Z-' ]*$/",$surname)) {
+          $surnameError = "Must not contain any special characters.Only letters and white space allowed";
+      } elseif (strlen($surname) < 3 || strlen($surname) >20) {
+        $surnameError = "Must be between 3 characters and 20 characters";
+      }
+    }
+    //validate gender
+    if(empty($_POST["gender"])) {
+      $genderError = "Gender is required";
+    } else {
+      $gender = test_input($_POST["gender"]);
+    }
+ }
  
   function test_input($data) {
   $data = trim($data);
@@ -73,6 +100,7 @@ $username = $email = $password = $confirmPassword = "";
   $data = htmlspecialchars($data);
   return $data;
 }
+  
 
 ?>
 <body>
@@ -111,13 +139,13 @@ $username = $email = $password = $confirmPassword = "";
     <main class="mainSectionRegisterForm">
       <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
         <label for="uname">Username:
-         <input type="text" id="uname" name="username" value="<?php echo $username; ?>">
+         <input type="text" name="username" value="<?php echo $username; ?>">
         <!-- display errors -->
           <span class="error"> * <?php echo $userNameError; ?></span>
         </label> 
        <br>
-        <label for ="emailUser">Email:
-        <input type="text" name="email" value="<?php echo $email; ?>">
+        <label for="emailUser">Email:
+        <input type="email" name="email" value="<?php echo $email; ?>">
         <!-- display errors -->
          <span class="error"> * <?php echo $emailError; ?> </span>
         </label>
@@ -133,9 +161,59 @@ $username = $email = $password = $confirmPassword = "";
           <!-- display errors -->
           <span class="error"> * <?php echo $confirmPasswordError ?> </span>
         </label>
+         <br>
+        <label for="firstName"> First Name:
+          <input type="text" name="firstname" value="<?php echo $firstName; ?>">
+        <!-- display errors -->
+         <span class="error"> * <?php echo $firstNameError ?> </span>
+         </label>
         <br>
-
-      <input type="submit" name="submitMessage" value="submit"> <br>
+         <label for="surName"> Surname:
+          <input type="text" name="surname" value="<?php echo $surname; ?>">
+        <!-- display errors -->
+         <span class="error"> * <?php echo $surnameError ?> </span>
+         </label>
+        <br>
+         <label for="genDer"> Gender:
+          <input type="radio" name="gender" value="female"> Female 
+          <input type="radio" name="gender" value="male"> Male 
+          <input type="radio" name="gender" value="other"> Other 
+          <!-- display errors -->
+           <span class="error"> * <?php echo $genderError ?> </span>
+         </label>
+         <br>
+        <label for="adDress"> Address:
+          <input class="address" type="text" name="address" value="">
+           <!-- display errors -->
+         <span class="error"> * <?php echo $addressError ?> </span>
+        </label>
+        <br>
+        <label for="subUrb"> Suburb:
+          <input class="sub" type="text" name="suburb" value="">
+           <!-- display errors -->
+         <span class="error"> * <?php echo $suburbError ?> </span>
+        </label>
+          <br>
+           <label for="postCode"> Postcode:
+          <input class="post" type="text" name="postcode" value="">
+           <!-- display errors -->
+         <span class="error"> * <?php echo $postcodeError ?> </span>
+        </label>
+        <br>
+          <label for="state"> State:
+          <input class="stateAus" type="text" name="state" value="">
+           <!-- display errors -->
+         <span class="error"> * <?php echo $stateError ?> </span>
+        </label>
+        <br>
+         <label for="phoneNumber"> Phone number:
+          <input class="phone" type="text" name="phonenumber" value="">
+           <!-- display errors -->
+         <span class="error"> * <?php echo $phoneError ?> </span>
+        </label>
+        <br>
+      <input class="clearBtn" type="reset" value="Reset">
+      <input class="submitBtn" type="submit" name="submitMessage" value="submit"> <br>
       </form>
     </main>
     <aside>

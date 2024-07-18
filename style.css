@@ -254,7 +254,8 @@ td{
 }
 /*register page */
 span.error{
-  color: red;
+  color: rgb(253, 70, 70);
+  font-size: 0.8rem;
 }
 
 /*responsive layout - menu */
