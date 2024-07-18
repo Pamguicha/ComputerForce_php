@@ -12,8 +12,8 @@
 </head>
 <?php
 //defining username variable and set to empty values
-$userNameError = $emailError = $passwordError = $confirmPasswordError = $firstNameError = $surnameError = $genderError = "";
-$username = $email = $password = $confirmPassword = $firstName = $surname = "";
+$userNameError = $emailError = $passwordError = $confirmPasswordError = $firstNameError = $surnameError = $genderError = $addressError = $suburbError = $postcodeError = $stateError = $phoneError ="";
+$username = $email = $password = $confirmPassword = $firstName = $surname = $address = $suburb = $postcode = $state = $phone="";
 
   //filter
    $hasPostOccured = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -53,7 +53,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = "";
      //validate confirmation password
      if(empty($_POST["confirmPassword"])) {
        $confirmPasswordError = "Confirmation password is required";
-     } elseif  ($_POST['password']!= $_POST['confirmPassword']){
+     } elseif  ($_POST['confirmPassword']!= $_POST['password']){
       $confirmPasswordError = "Required. Must match the password that the user has entered.";
      } else {
       $confirmPassword = test_input($_POST["password"]);
@@ -92,7 +92,61 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = "";
     } else {
       $gender = test_input($_POST["gender"]);
     }
- }
+ //validate address 
+   if(empty($_POST["address"])){
+    $addressError = "Address is required";
+   } else {
+    $address = test_input($_POST["address"]);
+     if(!preg_match("/^[a-zA-Z0-9\s,.'-]$/",$address)){
+      $addressError="Must be between 3 characters and 50 characters. Must not contain any special characters.";
+     } elseif (strlen($address) < 3 || strlen($address) > 50) {
+          $addressError = "Must be between 3 characters and 50 characters. Must not be empty";
+     }
+   }
+      //validate suburb
+    
+    if(empty($_POST["suburb"])) {
+      $suburbError = "Suburb is required";
+    } else {
+      $suburb = test_input($_POST["suburb"]);
+    if(!preg_match("/^[a-zA-Z0-9\s,.'-]$/",$suburb)){
+      $suburbError= "Required. Must be between 3 characters and 50 characters. Must not contain any special characters.";
+    } elseif (strlen($suburb) < 3 || strlen($suburb) > 50){
+      $suburbError=  "Required. Must be between 3 characters and 50 characters. Must not contain any special characters.";
+     }
+   }
+  //validate postcode (Required. Must be 4 characters exactly.)
+  if(empty($_POST["postcode"])) {
+    $postcodeError = "Postcode is required";
+  } else {
+    $postcode = test_input($_POST["postcode"]);
+    if(!preg_match("/^[0-9]*$/",$postcode)) {
+     $postcodeError= "Required. Must be 4 characters exactly.";
+    } elseif (strlen($postcode) !== 4) {
+       $postcodeError= "Required. Must be 4 characters exactly.";
+    }
+   }
+ //State (Required)
+     if(empty($_POST["state"])) {
+      $stateError = "State is required";
+    } else {
+      $state = test_input($_POST["state"]);
+    }
+   //Phone (Must be between 8 characters and 10 characters. Must not contain any special characters)
+    if(empty($_POST["phonenumber"])) {
+      $phoneError = "Phone number is required";
+    } else {
+      $phone = test_input($_POST["phonenumber"]);
+    if (!preg_match("/^[0-9]*$/",$phone)) {
+      $phoneError = "Must be between 8 characters and 10 characters. Must not contain any special characters";
+    } elseif (strlen($phone) < 8 || strlen($phone) >10) {
+      $firstNameError ="Must be between 8 characters and 10 characters.";
+    }
+  }
+}
+
+
+ 
  
   function test_input($data) {
   $data = trim($data);
@@ -153,25 +207,25 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = "";
         <label for="passwordUser"> Password:
           <input type="password" name="password" value="<?php echo $password; ?>" > 
            <!-- display errors -->
-          <span class="error"> * <?php echo $passwordError ?> </span>
+          <span class="error"> * <?php echo $passwordError; ?> </span>
         </label>
         <br>
         <label for="confirmationPassword"> Confirm Password:
           <input type="password" name="confirmPassword" value="<?php echo $confirmPassword; ?>">
           <!-- display errors -->
-          <span class="error"> * <?php echo $confirmPasswordError ?> </span>
+          <span class="error"> * <?php echo $confirmPasswordError; ?> </span>
         </label>
          <br>
         <label for="firstName"> First Name:
           <input type="text" name="firstname" value="<?php echo $firstName; ?>">
         <!-- display errors -->
-         <span class="error"> * <?php echo $firstNameError ?> </span>
+         <span class="error"> * <?php echo $firstNameError; ?> </span>
          </label>
         <br>
          <label for="surName"> Surname:
           <input type="text" name="surname" value="<?php echo $surname; ?>">
         <!-- display errors -->
-         <span class="error"> * <?php echo $surnameError ?> </span>
+         <span class="error"> * <?php echo $surnameError; ?> </span>
          </label>
         <br>
          <label for="genDer"> Gender:
@@ -179,37 +233,37 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = "";
           <input type="radio" name="gender" value="male"> Male 
           <input type="radio" name="gender" value="other"> Other 
           <!-- display errors -->
-           <span class="error"> * <?php echo $genderError ?> </span>
+           <span class="error"> * <?php echo $genderError; ?> </span>
          </label>
          <br>
         <label for="adDress"> Address:
-          <input class="address" type="text" name="address" value="">
+          <input class="address" type="text" name="address" value="<?php echo $address; ?>">
            <!-- display errors -->
-         <span class="error"> * <?php echo $addressError ?> </span>
+         <span class="error"> * <?php echo $addressError; ?> </span>
         </label>
         <br>
         <label for="subUrb"> Suburb:
-          <input class="sub" type="text" name="suburb" value="">
+          <input class="sub" type="text" name="suburb" value="<?php echo $suburb; ?>">
            <!-- display errors -->
-         <span class="error"> * <?php echo $suburbError ?> </span>
+         <span class="error"> * <?php echo $suburbError; ?> </span>
         </label>
           <br>
            <label for="postCode"> Postcode:
-          <input class="post" type="text" name="postcode" value="">
+          <input class="post" type="text" name="postcode" value="<?php echo $postcode; ?>">
            <!-- display errors -->
-         <span class="error"> * <?php echo $postcodeError ?> </span>
+         <span class="error"> * <?php echo $postcodeError; ?> </span>
         </label>
         <br>
           <label for="state"> State:
-          <input class="stateAus" type="text" name="state" value="">
+          <input class="stateAus" type="text" name="state" value="<?php echo $state; ?>">
            <!-- display errors -->
-         <span class="error"> * <?php echo $stateError ?> </span>
+         <span class="error"> * <?php echo $stateError; ?> </span>
         </label>
         <br>
          <label for="phoneNumber"> Phone number:
-          <input class="phone" type="text" name="phonenumber" value="">
+          <input class="phone" type="text" name="phonenumber" value="<?php echo $phone; ?>">
            <!-- display errors -->
-         <span class="error"> * <?php echo $phoneError ?> </span>
+         <span class="error"> * <?php echo $phoneError; ?> </span>
         </label>
         <br>
       <input class="clearBtn" type="reset" value="Reset">
