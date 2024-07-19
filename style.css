@@ -251,20 +251,121 @@ td{
   background-color: var(--secondary-color-branding);
   color: #FFFFFF;
   border: none;
-  padding: 10px 30px;
+  padding: 10px 60px;
   font-size: 1.5rem;
   cursor: pointer;
   margin-top: 30px;
   margin-bottom: 30px;
-  margin-right: 60px;
+    margin-right: 253px;
   
 }
 /*register page */
-span.error{
-  color: rgb(253, 70, 70);
-  font-size: 0.8rem;
+
+.privacy-container{
+  margin-bottom: 10px;
+  margin-left: 50px;
+}
+a.cfPrivacyPolicyLink{
+  color: var(--secondary-color-branding);
+  font-weight: 900;
+  margin-top: 10px;
+  
 }
 
+a.cfPrivacyPolicyLink:hover{
+  color: var(--primary-color-branding);
+}
+.register-form{
+  background-color:#c993f2;
+  border-radius: 30px;
+  width: 600px;
+  height: 650px;
+  color: var(--details-color-branding);
+  font-weight: bold;
+  margin: auto;
+  display: block;
+   margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.passwordStyle,
+.usernameStyle,
+.emailStyle,
+.confirmPasswordStyle,
+.fnStyle,
+.snstyle,
+.genderStyle,
+.addressStyle,
+.suburbStyle,
+.postcodeStyle,
+.stateStyle,
+.phoneStyle,
+.usernameInput,
+.emailInput,
+.passwordInput,
+.confpasswordInput,
+.firstNameInput,
+.surnameInput,
+.addressInput,
+.subInput,
+.postInput,
+.phoneinput{
+ margin-left: 30px;
+}
+
+.usernameInput,
+.emailInput,
+.passwordInput,
+.confpasswordInput,
+.firstNameInput,
+.surnameInput,
+.addressInput,
+.subInput,
+.postInput,
+.phoneinput{
+border: none;
+padding: 3px 40px;
+margin-top: 10px;
+}
+
+
+span.error{
+  color: rgb(230, 17, 17);
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.clearBtn{
+  background-color: var(--tertiary-color-branding);
+  border: none;
+  margin-top: 30px;
+  margin-left: 30px;
+  padding: 10px 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.clearBtn:hover{
+  background-color: var(--secondary-color-branding);
+  color: var(--tertiary-color-branding);
+}
+
+.submitBtn{
+  border: none;
+   padding: 10px 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 30px;
+  background-color: var(--secondary-color-branding);
+  color: var(--tertiary-color-branding);
+}
+
+.submitBtn:hover{
+  background-color: var(--tertiary-color-branding);
+  color: var(--secondary-color-branding);
+}
 /*responsive layout - menu */
 @media only screen and (max-width: 920px){
 .nav_bar{
@@ -344,10 +445,11 @@ margin-right: 100px;
 }
 
 /*responsive cart*/
-@media only screen and(max-width: 1000px){
+@media only screen and(max-width: 1426px){
   .tableBtn{
-    margin-right:20px;
+    margin-left:168px;
   }
   
 }
+
 }

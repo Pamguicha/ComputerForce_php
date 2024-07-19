@@ -134,7 +134,6 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
       $state = test_input($_POST["state"]);
      }
       
-    
    //Phone (Must be between 8 characters and 10 characters. Must not contain any special characters)
     if(empty($_POST["phonenumber"])) {
       $phoneError = "Phone number is required";
@@ -184,76 +183,87 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
   </nav>
   <h1 class="titlePage"> REGISTRATION FORM </h1>
   <p class="welcomeParagraph"> Please complete the following form to register for an account on our website</p>
+  <div class="privacy-container">
   <a class="cfPrivacyPolicyLink" href="images/ComputerForce PrivacyPolicy.pdf" title="Download Computer Force Privacy Policy" target="_blank"> 
   Computer Force&#180;s Privacy Policy
-
   </a>
+</div>
   <div class="container-grid">
     <main class="mainSectionRegisterForm">
-      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-        <label for="uname">Username:
-         <input type="text" name="username" value="<?php echo $username; ?>">
+      <form class="register-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <label class="usernameStyle"for="uname">Username:
+           <br>
+         <input class="usernameInput" type="text" name="username" value="<?php echo $username; ?>">
         <!-- display errors -->
           <span class="error"> * <?php echo $userNameError; ?></span>
         </label> 
        <br>
-        <label for="emailUser">Email:
-        <input type="email" name="email" value="<?php echo $email; ?>">
+        <label class="emailStyle" for="emailUser">Email:
+          <br>
+        <input class="emailInput"type="email" name="email" value="<?php echo $email; ?>">
         <!-- display errors -->
          <span class="error"> * <?php echo $emailError; ?> </span>
         </label>
         <br>  
-        <label for="passwordUser"> Password:
-          <input type="password" name="password" value="<?php echo $password; ?>" > 
+        <label class="passwordStyle"for="passwordUser"> Password:
+          <br>
+          <input class="passwordInput"type="password" name="password" value="<?php echo $password; ?>" > 
            <!-- display errors -->
           <span class="error"> * <?php echo $passwordError; ?> </span>
         </label>
         <br>
-        <label for="confirmationPassword"> Confirm Password:
-          <input type="password" name="confirmPassword" value="<?php echo $confirmPassword; ?>">
+        <label class="confirmPasswordStyle" for="confirmationPassword"> Confirm Password:
+          <br>
+          <input class="confpasswordInput"type="password" name="confirmPassword" value="<?php echo $confirmPassword; ?>">
           <!-- display errors -->
           <span class="error"> * <?php echo $confirmPasswordError; ?> </span>
         </label>
          <br>
-        <label for="firstName"> First Name:
-          <input type="text" name="firstname" value="<?php echo $firstName; ?>">
+        <label class="fnStyle"for="firstName"> First Name:
+          <br>
+          <input class="firstNameInput"type="text" name="firstname" value="<?php echo $firstName; ?>">
         <!-- display errors -->
          <span class="error"> * <?php echo $firstNameError; ?> </span>
          </label>
         <br>
-         <label for="surName"> Surname:
-          <input type="text" name="surname" value="<?php echo $surname; ?>">
+         <label for="surName" class="snstyle"> Surname:
+          <br>
+          <input class="surnameInput"type="text" name="surname" value="<?php echo $surname; ?>">
         <!-- display errors -->
          <span class="error"> * <?php echo $surnameError; ?> </span>
          </label>
         <br>
-         <label for="genDer"> Gender:
+         <label class="genderStyle" for="genDer"> Gender:
           <input type="radio" name="gender" value="female"> Female 
           <input type="radio" name="gender" value="male"> Male 
           <input type="radio" name="gender" value="other"> Other 
+           
           <!-- display errors -->
            <span class="error"> * <?php echo $genderError; ?> </span>
          </label>
          <br>
-        <label for="adDress"> Address:
-          <input class="address" type="text" name="address" value="<?php echo $address; ?>">
+        <label class="addressStyle"for="adDress"> Address:
+           <br>
+          <input class="addressInput" type="text" name="address" value="<?php echo $address; ?>">
            <!-- display errors -->
          <span class="error"> * <?php echo $addressError; ?> </span>
         </label>
         <br>
-        <label for="subUrb"> Suburb:
-          <input class="sub" type="text" name="suburb" value="<?php echo $suburb; ?>">
+        <label class="suburbStyle"for="subUrb"> Suburb:
+          <br>
+          <input class="subInput" type="text" name="suburb" value="<?php echo $suburb; ?>">
            <!-- display errors -->
          <span class="error"> * <?php echo $suburbError; ?> </span>
         </label>
           <br>
-           <label for="postCode"> Postcode:
-          <input class="post" type="text" name="postcode" value="<?php echo $postcode; ?>">
+           <label class="postcodeStyle"for="postCode"> Postcode:
+             <br>
+          <input class="postInput" type="text" name="postcode" value="<?php echo $postcode; ?>">
            <!-- display errors -->
          <span class="error"> * <?php echo $postcodeError; ?> </span>
         </label>
         <br>
-          <label for="state"> State:
+          <label class="stateStyle" for="state"> State:
             <select name="state">
               <option value="none">-</option>
               <option value="ACT">ACT</option>
@@ -268,8 +278,9 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
          <span class="error"> * <?php echo $stateError; ?> </span>
         </label>
         <br>
-         <label for="phoneNumber"> Phone number:
-          <input class="phone" type="text" name="phonenumber" value="<?php echo $phone; ?>">
+         <label class="phoneStyle" for="phoneNumber"> Phone number:
+          <br>
+          <input class="phoneinput" type="text" name="phonenumber" value="<?php echo $phone; ?>">
            <!-- display errors -->
          <span class="error"> * <?php echo $phoneError; ?> </span>
         </label>
