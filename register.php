@@ -127,10 +127,12 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
     }
    }
  //State (Required)
-     if(empty($_POST["state"])) {
+     if(empty($_POST["state"]) || $_POST["state"] == "none")  {
       $stateError = "State is required";
     } else {
       $state = test_input($_POST["state"]);
+     }
+      
     }
    //Phone (Must be between 8 characters and 10 characters. Must not contain any special characters)
     if(empty($_POST["phonenumber"])) {
@@ -143,10 +145,6 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
       $firstNameError ="Must be between 8 characters and 10 characters.";
     }
   }
-}
-
-
- 
  
   function test_input($data) {
   $data = trim($data);
@@ -255,7 +253,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
         </label>
         <br>
           <label for="state"> State:
-            <select name="state" value="<?php echo $state; ?>">
+            <select name="state">
               <option value="none">-</option>
               <option value="ACT">ACT</option>
               <option value="NSW">NSW</option>
@@ -263,7 +261,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
               <option value="QLD">QLD</option>
               <option value="TAS">TAS</option>
               <option value="VIC">VIC</option>
-              <option value="TAS">TAS</option>
+              <option value="WA">WA</option>
             </select>
            <!-- display errors -->
          <span class="error"> * <?php echo $stateError; ?> </span>
