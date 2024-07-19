@@ -12,8 +12,9 @@
 </head>
 <?php
 //defining username variable and set to empty values
-$userNameError = $emailError = $passwordError = $confirmPasswordError = $firstNameError = $surnameError = $genderError = $addressError = $suburbError = $postcodeError = $stateError = $phoneError ="";
-$username = $email = $password = $confirmPassword = $firstName = $surname = $address = $suburb = $postcode = $state = $phone="";
+$userNameError = $emailError = $passwordError = $confirmPasswordError = $firstNameError = $surnameError = $genderError = $addressError = $suburbError = $postcodeError = $stateError = $phoneError = "";
+
+$username = $email = $password = $confirmPassword = $firstName = $surname = $address = $suburb = $postcode = $state = $phone = "";
 
   //filter
    $hasPostOccured = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -133,7 +134,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
       $state = test_input($_POST["state"]);
      }
       
-    }
+    
    //Phone (Must be between 8 characters and 10 characters. Must not contain any special characters)
     if(empty($_POST["phonenumber"])) {
       $phoneError = "Phone number is required";
@@ -142,17 +143,17 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
     if (!preg_match("/^[0-9]*$/",$phone)) {
       $phoneError = "Must be between 8 characters and 10 characters. Must not contain any special characters";
     } elseif (strlen($phone) < 8 || strlen($phone) >10) {
-      $firstNameError ="Must be between 8 characters and 10 characters.";
+      $phoneError ="Must be between 8 characters and 10 characters.";
     }
   }
- 
+ }
   function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
-  
+
 
 ?>
 <body>
