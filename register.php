@@ -92,6 +92,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
       $genderError = "Gender is required";
     } else {
       $gender = test_input($_POST["gender"]);
+      $gender = ""; 
     }
  //validate address 
    if(empty($_POST["address"])){
@@ -110,7 +111,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
       $suburbError = "Suburb is required";
     } else {
       $suburb = test_input($_POST["suburb"]);
-    if(!preg_match("/^[a-zA-Z0-9\s,.'-]$/",$suburb)){
+    if(!preg_match("/^[a-zA-Z\s\-.'0-9]+$/",$suburb)){
       $suburbError= "Required. Must be between 3 characters and 50 characters. Must not contain any special characters.";
     } elseif (strlen($suburb) < 3 || strlen($suburb) > 50){
       $suburbError=  "Required. Must be between 3 characters and 50 characters. Must not contain any special characters.";
@@ -132,6 +133,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
       $stateError = "State is required";
     } else {
       $state = test_input($_POST["state"]);
+      $state = "";
      }
       
    //Phone (Must be between 8 characters and 10 characters. Must not contain any special characters)
