@@ -256,7 +256,7 @@ td{
   cursor: pointer;
   margin-top: 30px;
   margin-bottom: 30px;
-    margin-right: 253px;
+  margin-right: 100px;
   
 }
 /*register page */
@@ -276,7 +276,7 @@ a.cfPrivacyPolicyLink:hover{
   color: var(--primary-color-branding);
 }
 .register-form{
-  background-color:#c993f2;
+  background-color:var(--primary-color-branding);
   border-radius: 30px;
   width: 600px;
   height: 650px;
@@ -443,13 +443,23 @@ margin-right: 100px;
 .AboutTitleList{
   font-size: 1.8rem;
 }
-
-/*responsive cart*/
-@media only screen and(max-width: 1426px){
-  .tableBtn{
-    margin-left:168px;
-  }
-  
+}
+@media only screen and (max-width: 412px){
+.AboutTitleList{
+  font-size: 1.2rem;
+}
 }
 
+/*reposive register */
+@media only screen and (max-width: 920px){
+.register-form{
+width: 500px;
 }
+}
+
+@media only screen and (max-width: 412px){
+.register-form{
+width: 450px;
+}
+}
+

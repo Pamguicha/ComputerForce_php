@@ -183,7 +183,7 @@ $username = $email = $password = $confirmPassword = $firstName = $surname = $add
       value="search" aria-label="submision button">
     </form>
   </nav>
-  <h1 class="titlePage"> REGISTRATION FORM </h1>
+  <h1 class="titlePage"> Registration Form </h1>
   <p class="welcomeParagraph"> Please complete the following form to register for an account on our website</p>
   <div class="privacy-container">
   <a class="cfPrivacyPolicyLink" href="images/ComputerForce PrivacyPolicy.pdf" title="Download Computer Force Privacy Policy" target="_blank"> 
