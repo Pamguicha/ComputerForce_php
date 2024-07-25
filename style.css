@@ -259,6 +259,11 @@ td{
   margin-right: 100px;
   
 }
+
+.tableBtn:hover{
+  background-color: var(--primary-color-branding);
+}
+
 /*register page */
 
 .privacy-container{
